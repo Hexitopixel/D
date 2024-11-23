@@ -1,0 +1,199 @@
+--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+repeat task.wait(0.25) until game:IsLoaded();
+getgenv().Image = "rbxassetid://112383160504145"; -- put a asset id in here to make it work
+getgenv().ToggleUI = "K" -- This where you can Toggle the Fluent ui library
+
+task.spawn(function()
+    if not getgenv().LoadedMobileUI == true then getgenv().LoadedMobileUI = true
+        local OpenUI = Instance.new("ScreenGui");
+        local ImageButton = Instance.new("ImageButton");
+        local UICorner = Instance.new("UICorner");
+        OpenUI.Name = "OpenUI";
+        OpenUI.Parent = game:GetService("CoreGui");
+        OpenUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling;
+        ImageButton.Parent = OpenUI;
+        ImageButton.BackgroundColor3 = Color3.fromRGB(105,105,105);
+        ImageButton.BackgroundTransparency = 0.8
+        ImageButton.Position = UDim2.new(0.9,0,0.1,0);
+        ImageButton.Size = UDim2.new(0,75,0,75);
+        ImageButton.Image = getgenv().Image;
+        ImageButton.Draggable = true;
+        ImageButton.Transparency = 1;
+        UICorner.CornerRadius = UDim.new(0,200);
+        UICorner.Parent = ImageButton;
+        ImageButton.MouseButton1Click:Connect(function()
+            game:GetService("VirtualInputManager"):SendKeyEvent(true,getgenv().ToggleUI,false,game);
+        end)
+    end
+end)
+
+local Library = loadstring(game:HttpGetAsync("https://github.com/ActualMasterOogway/Fluent-Renewed/releases/latest/download/Fluent.luau"))()
+local SaveManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/SaveManager.luau"))()
+local InterfaceManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/InterfaceManager.luau"))()
+ 
+local Window = Library:CreateWindow{
+    Title = `Dandy's World Tower Defense Hub`,
+    SubTitle = "by Hex233222 or Maybepiet on discord",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(730, 500),
+    Resize = true, -- Resize this ^ Size according to a 1920x1080 screen, good for mobile users but may look weird on some devices
+    MinSize = Vector2.new(470, 380),
+    Acrylic = false, -- The blur may be detectable, setting this to false disables blur entirely
+    Theme = "Darker",
+    MinimizeKey = Enum.KeyCode.K -- Used when theres no MinimizeKeybind
+}
+
+-- Fluent Renewed provides ALL 1470 Lucide 0.395.0 Icons https://lucide.dev/icons/ for the tabs, icons are optional
+local Tabs = {
+    Main = Window:CreateTab{
+        Title = "Towers Spawn",
+        Icon = "circle-user-round"
+    }
+}
+    
+
+Window:Dialog({
+    Title = "¿Copy Discord?",
+    Content = "¿Wanna join discord?",
+    Buttons = {
+        { 
+            Title = "Yeah",
+            Callback = function()
+local textToCopy = "https://discord.gg/QnkQ9q4P"
+
+-- Verificar si el exploit soporta setclipboard
+if setclipboard then
+    setclipboard(textToCopy)
+    print("Texto copiado al portapapeles: " .. textToCopy)
+else
+    print("Este exploit no soporta la función setclipboard.")
+end
+            end 
+        }, {
+            Title = "Not now",
+            Callback = function()
+                Fluent:Notify({
+        Title = "Notification",
+        Content = "Aw man, hope u change opinion",
+        SubContent = "", -- Optional
+        Duration = 5 -- Set to nil to make the notification not disappear
+})    
+            end 
+        }
+    }
+})
+
+local Options = Library.Options
+
+Library:Notify{
+    Title = "Notification",
+    Content = "¡Make sure checking tower's prices!",
+    SubContent = "", -- Optional
+    Duration = 5 -- Set to nil to make the notification not disappear
+}
+
+Tabs.Main:AddButton({
+    Title = "Spawn Upgrade Titan Speaker",
+    Description = "Price: 2K",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local args = {
+    [1] = "UTSM",
+    [2] = humanoidRootPart.CFrame -- Usa la posición del jugador local
+}
+
+game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer(unpack(args))
+    end
+})
+
+Tabs.Main:AddButton({
+    Title = "Fred",
+    Description = "Price: 200",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local args = {
+    [1] = "ᖴᖇEᗪ",
+    [2] = humanoidRootPart.CFrame -- Usa la posición del jugador local
+}
+
+game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer(unpack(args))
+    end
+})
+
+local Section = Tabs.Main:AddSection("Regular Towers")
+
+Tabs.Main:AddButton({
+    Title = "Vee",
+    Description = "Price: 300",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local args = {
+    [1] = "Vee",
+    [2] = humanoidRootPart.CFrame -- Usa la posición del jugador local
+}
+
+game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer(unpack(args))
+    end
+})
+
+Tabs.Main:AddButton({
+    Title = "Dandy",
+    Description = "Price: 1000",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local args = {
+    [1] = "Dandy",
+    [2] = humanoidRootPart.CFrame -- Usa la posición del jugador local
+}
+
+game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer(unpack(args))
+    end
+})
+
+Tabs.Main:AddButton({
+    Title = "Astro",
+    Description = "Price: 250",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local args = {
+    [1] = "Astro",
+    [2] = humanoidRootPart.CFrame -- Usa la posición del jugador local
+}
+
+game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer(unpack(args))
+    end
+})
+
+Tabs.Main:AddButton({
+    Title = "Pebble",
+    Description = "Price: 200",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local args = {
+    [1] = "Pebble",
+    [2] = humanoidRootPart.CFrame -- Usa la posición del jugador local
+}
+
+game:GetService("ReplicatedStorage").Functions.SpawnTower:InvokeServer(unpack(args))
+    end
+})
